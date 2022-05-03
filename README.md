@@ -12,7 +12,7 @@ This project is an example for creating a simple crud. The main child functions:
 ## Installation
 
 - Create database
-- Load script (script.sql)
+- Load script (codeigniter_crud.sql)
 - Configuration baseURL, environment and database(.env)
 
 ## Server Requirements
