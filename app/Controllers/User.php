@@ -22,7 +22,38 @@ class User extends BaseController
         echo view('template/header');
 		echo view('list_users', $data);
 		echo view('template/footer');
+    }         
+	
+	public function create()
+    {
+        if ($this->request->getMethod() === 'post' && $this->validate([
+			'name' 		=> 'required|min_length[3]|max_length[40]|alpha',
+			'last_name'	=> 'required|min_length[3]|max_length[40]|alpha',
+			'mail'	=> 'required|valid_email',
+			'phone'	=> 'required|numeric',
+		])) {
+			$resp = $this->UserModel->save([
+				'name' 		=> $this->request->getPost('name'),
+				'last_name'	=> $this->request->getPost('last_name'),
+				'mail'  	=> $this->request->getPost('mail'),
+                'phone'  	=> $this->request->getPost('phone'),
+			]);
 
-    }          
+
+			if (!$resp) {
+				return redirect()->to('/user/create')->with('item', 'Intente nuevamente');
+			} else {
+				return redirect()->to('/user')->with('item', 'Procedimiento realizado con éxito');
+			}
+
+			
+		} else {
+			//$data['title'] = 'Crear Usuario';
+			echo view('template/header');
+			echo view('create_user');
+			echo view('template/footer');
+		}
+    
+    }
 
 }

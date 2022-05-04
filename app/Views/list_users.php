@@ -2,7 +2,7 @@
 
 <div class="shadow p-3 mb-5 rounded">
    <div class="d-flex justify-content-end">
-      <a href="<?php echo base_url('helloworld/create') ?>" class="btn btn-secondary mb-2">Nuevo Usuario</a>
+      <a href="<?php echo base_url('user/create') ?>" class="btn btn-primary mb-2">Nuevo Usuario</a>
    </div>
 
    <div class="mt-3">
