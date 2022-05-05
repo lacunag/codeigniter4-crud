@@ -56,4 +56,12 @@ class User extends BaseController
     
     }
 
+	// delete user
+	public function delete($id, $name)
+	{
+		$userModel = new UserModel();
+		$userModel->delete($id);
+		return redirect()->to('/user')->with('item', 'Usuario '.$name.' eliminado con éxito');
+
+	}
 }

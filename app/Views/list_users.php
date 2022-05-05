@@ -16,20 +16,20 @@
                <th>Apellido</th>
                <th>Email</th>
                <th>Teléfono</th>
-               <th>Acción</th>
+               <th width="3%">Acción</th>
             </tr>
          </thead>
          <tbody>
             <?php if ($users) : ?>
                <?php foreach ($users as $user) : ?>
                   <tr>
-                     <td><?php echo $user['id_users']; ?></td>
+                     <td><strong><?php echo $user['id_users']; ?></strong></td>
                      <td><?php echo $user['name']; ?></td>
                      <td><?php echo $user['last_name']; ?></td>
                      <td><?php echo $user['mail']; ?></td>
                      <td><?php echo $user['phone']; ?></td>
                      <td>
-
+                        <a href="<?= base_url()?>/user/delete/<?php echo $user['id_users']; ?>/<?php echo $user['name']; ?>" class="text-danger"><i class="fa-solid fa-trash"></i></a>
                      </td>
                   </tr>
                <?php endforeach; ?>
