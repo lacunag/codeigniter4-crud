@@ -64,4 +64,36 @@ class User extends BaseController
 		return redirect()->to('/user')->with('item', 'Usuario '.$name.' eliminado con éxito');
 
 	}
+
+	// update user
+	public function update($id)
+	{
+		$userModel = new UserModel();
+		$data['user'] = $userModel->find($id);
+
+		if ($this->request->getMethod() === 'post' && $this->validate([
+			'name' 		=> 'required|min_length[3]|max_length[40]',
+			'last_name'	=> 'required|min_length[3]|max_length[40]',
+			'mail'	=> 'required|valid_email',
+			'phone'	=> 'required|numeric',
+		])) {
+			$resp = $this->UserModel->update($id, [
+				'name' 		=> $this->request->getPost('name'),
+				'last_name'	=> $this->request->getPost('last_name'),
+				'mail'  	=> $this->request->getPost('mail'),
+				'phone'  	=> $this->request->getPost('phone'),
+			]);
+
+			if (!$resp) {
+				return redirect()->to('/user/update/'.$id)->with('item', 'Intente nuevamente');
+			} else {
+				return redirect()->to('/user')->with('item', 'Procedimiento realizado con éxito');
+			}
+		} else {
+			echo view('template/header');
+			echo view('update_user', $data);
+			echo view('template/footer');
+		}
+
+	}
 }

@@ -29,6 +29,8 @@
                      <td><?php echo $user['mail']; ?></td>
                      <td><?php echo $user['phone']; ?></td>
                      <td>
+                        <a href="<?= base_url()?>/user/update/<?php echo $user['id_users']; ?>" class="text-primary"><i class="fa-solid fa-pen"></i></a>
+
                         <a href="<?= base_url()?>/user/delete/<?php echo $user['id_users']; ?>/<?php echo $user['name']; ?>" class="text-danger"><i class="fa-solid fa-trash"></i></a>
                      </td>
                   </tr>
