@@ -27,9 +27,9 @@ class User extends BaseController
 	public function create()
     {
         if ($this->request->getMethod() === 'post' && $this->validate([
-			'name' 		=> 'required|min_length[3]|max_length[40]|alpha',
-			'last_name'	=> 'required|min_length[3]|max_length[40]|alpha',
-			'mail'	=> 'required|valid_email',
+			'name' 		=> 'required|min_length[3]|max_length[40]|alpha|alpha_space',
+			'last_name'	=> 'required|min_length[3]|max_length[40]|alpha|alpha_space',
+			'mail'	=> 'required|valid_email|is_unique[m_users.mail]',
 			'phone'	=> 'required|numeric',
 		])) {
 			$resp = $this->UserModel->save([
